@@ -12,6 +12,13 @@ class Component01 extends Component
     public  $email;
     public  $password;
     public function createNewUser(){
+
+        $this -> validate([
+            'name' => 'required|min:3|max:20',
+            'email' => 'required|email|unique:users',
+            'password'=> 'required|min:5'
+        ]);
+        
         User::create([
             "name" => $this->name,
             "email" => $this->email,
