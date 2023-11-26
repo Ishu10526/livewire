@@ -1,5 +1,9 @@
 <div>
 
+    @if (session('success'))
+        <span>{{ session('success') }}</span>
+    @endif
+
     <form wire:submit="createNewUser" action="">
         <input wire:model="name" type="text" name="username" placeholder="Name">
         @error('name')

@@ -26,6 +26,8 @@ class Component01 extends Component
         ]);
 
         $this->reset(['name','email','password']);
+
+        request()->session()->flash('success','User created successfully!');
     }
     public function render()
     {
