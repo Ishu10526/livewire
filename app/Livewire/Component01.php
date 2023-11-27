@@ -54,6 +54,14 @@ class Component01 extends Component
         session()->flash('success', 'User updated successfully!');
     }
 
+    public function deleteUser($userId)
+    {
+        $user = User::findOrFail($userId);
+        $user->delete();
+
+        session()->flash('success', 'User deleted successfully!');
+    }
+    
     public function selectUserForUpdate($userId)
     {
         $user = User::findOrFail($userId);

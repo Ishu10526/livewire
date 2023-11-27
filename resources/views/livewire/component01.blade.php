@@ -31,6 +31,9 @@
             <h3>{{ $user->name }}</h3>
             <button class="bg-sky-700 text-white font-semibold  m-3 p-2 rounded-lg"
                 wire:click="selectUserForUpdate({{ $user->id }})">Edit</button>
+            <button class="bg-sky-700 text-white font-semibold  m-3 p-2 rounded-lg"
+                wire:click="deleteUser({{ $user->id }})">Delete</button>
+
         </div>
     @endforeach
     @if ($selectedUserId)
