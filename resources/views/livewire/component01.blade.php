@@ -6,15 +6,18 @@
 
     <form wire:submit="createNewUser" action="">
         <div class="border-4 border-slate-950 flex justify-center align-center">
-            <input class="border-4 border-slate-300 m-3 p-2 rounded-lg" wire:model="name" type="text" name="username" placeholder="Name">
+            <input class="border-4 border-slate-300 m-3 p-2 rounded-lg" wire:model="name" type="text" name="username"
+                placeholder="Name">
             @error('name')
                 <span>{{ $message }}</span>
             @enderror
-            <input class="border-4 border-slate-300 m-3 p-2 rounded-lg" wire:model="email" type="email" name="email" placeholder="Email">
+            <input class="border-4 border-slate-300 m-3 p-2 rounded-lg" wire:model="email" type="email" name="email"
+                placeholder="Email">
             @error('email')
                 <span>{{ $message }}</span>
             @enderror
-            <input class="border-4 border-slate-300 m-3 p-2 rounded-lg" wire:model="password" type="password" name="password" placeholder="Password">
+            <input class="border-4 border-slate-300 m-3 p-2 rounded-lg" wire:model="password" type="password"
+                name="password" placeholder="Password">
             @error('passwordgit')
                 <span>{{ $message }}</span>
             @enderror
@@ -23,8 +26,19 @@
     </form>
 
     @foreach ($users as $user)
-        <h3>{{ $user->name }}</h3>
+        {{-- <h3>{{ $user->name }}</h3> --}}
+        <div class="flex">
+            <h3>{{ $user->name }}</h3>
+            <button class="bg-sky-700 text-white font-semibold  m-3 p-2 rounded-lg"
+                wire:click="selectUserForUpdate({{ $user->id }})">Edit</button>
+        </div>
     @endforeach
+    @if ($selectedUserId)
+        <form wire:submit.prevent="updateUser">
+            <input type="hidden" wire:model="selectedUserId">
+            <button class="bg-sky-700 text-white font-semibold  m-3 p-2 rounded-lg">Update User</button>
+        </form>
+    @endif
 
     {{ $users->links() }}
 </div>
